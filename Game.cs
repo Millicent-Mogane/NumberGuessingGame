@@ -22,7 +22,11 @@ namespace NumberGame
             int guess; //stores the user's guess
             int number; //Stores the correct randomly generated number
             int guesses; //Counts guesses the user makes
-            String response;
+            string response;
+
+            // Prompt for player's name
+            Console.WriteLine("Enter your name:");
+            string playerName = Console.ReadLine();
 
             //Main game loop that repeats if the user wants to play again
             while (playAgain)
@@ -53,9 +57,10 @@ namespace NumberGame
                     }
                     guesses++; //Increment guesses by 1 after each guess
                 }
+
                 Console.WriteLine("Number: " + number); //Reveal the correct number
                 Console.WriteLine("YOU WIN!"); // Celebrate the win
-                Console.WriteLine("Guesses: " + guesses); //Display number of attempts
+                Console.WriteLine($"Great job, {playerName}! You guessed the number in {guesses} tries!"); // 👏
 
                 // Ask user if they want to play again
                 Console.WriteLine("Would you like to play again (Y/N): ");
@@ -63,19 +68,11 @@ namespace NumberGame
                 response = response.ToUpper();
 
                 // Update playAgain based on the user's response
-                if (response == "Y")
-                {
-                    playAgain = true; //Continue playing
-                }
-                else
-                {
-                    playAgain = false; //Exit game
-                }
-
+                playAgain = response == "Y";
             }
 
             //Final message after the user chooses not to play again
-            Console.WriteLine("Thanks for playing! ... I guess");
+            Console.WriteLine($"Thanks for playing, {playerName}!");
 
             //Prevents console from closing immediately
             Console.ReadKey();
